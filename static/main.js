@@ -3,11 +3,25 @@
 /* Editor Stuff */
 var filename = "scratch";
 
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false, // IMPORTANT, because we do MathJax before markdown,
+                   //            however we do escaping in 'CreatePreview'.
+  smartLists: true,
+  smartypants: false
+});
+
 var update = _.debounce(function(){
-    var $output = $("#output");
-    $output.empty();
-    $output.html(editor.exportFile(null, 'html'));
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, output[0]]);
+    $buf = $("#output-buffer");
+    $buf.html(editor.exportFile(null, 'text'));
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $buf[0]]);
+    $("#output").html(marked($buf.html()));
+
 }, 500, { 'leading': true, 'trailing': true });
 
 let editor = new EpicEditor({

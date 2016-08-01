@@ -69,6 +69,13 @@
       padding: 16px;
     }
 
+    #output-buffer{
+      display:none;
+      position:absolute;
+      top:0;
+      left:0;
+    }
+
     #input {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
@@ -103,10 +110,11 @@
             <button id="save" class="pull-right btn btn-primary"
                     data-toggle="tooltip" data-placement="left"
                     data-trigger="manual"
-                    data-loading-text="Saving..." 
+                    data-loading-text="Saving..."
                     title="Saved succesfully!">Save!</button>
         </h1>
         <div id="output"></div>
+        <div id="output-buffer"></div>
     </div>
     <div id="input"></div>
     <textarea id="proforma" class="hidden">
@@ -120,6 +128,7 @@
 * Made by [Ezequiel Alvarez](github.com/alvare/latexpad) with [Servant](http://haskell-servant.readthedocs.io/)
 
 $$ \sum\limits_{i=1}^{n}{i^2} $$</textarea>
-    <script src="main.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
